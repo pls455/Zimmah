@@ -10,6 +10,10 @@ service cloud.firestore {
         allow read, update, delete: if request.auth != null && request.auth.uid == userId;
         allow create: if request.auth != null && request.auth.uid == userId && request.resource.data.userId == userId;
       }
+      match /walletTransactions/{walletTransactionId} {
+        allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+        allow create: if request.auth != null && request.auth.uid == userId && request.resource.data.userId == userId;
+      }
     }
     match /sharedDebts/{sharedDebtId} {
       allow read, update, delete: if request.auth != null && request.auth.uid in resource.data.memberIds;
