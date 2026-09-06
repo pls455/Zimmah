@@ -1,1 +1,14 @@
-
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e"><meta name="description" content="ذِمّة | Zimmah لإدارة الديون والذمم الشخصية بدون إنترنت">
+  <link rel="manifest" href="manifest.json"><link rel="stylesheet" href="css/main.css"><title>ذِمّة | Zimmah</title>
+</head>
+<body>
+<div id="app" class="app-shell">
+<section id="authView" class="auth-view hidden"><div class="auth-card"><div class="brand-mark">ذ</div><h1>ذِمّة</h1><p>إدارة ذممك الشخصية، حتى لما الإنترنت يقرر يختفي.</p><form id="authForm"><label>البريد الإلكتروني<input id="email" type="email" autocomplete="email" required></label><label>كلمة المرور<input id="password" type="password" autocomplete="current-password" minlength="6" required></label><button class="btn primary" type="submit" id="authSubmit">تسجيل الدخول</button><button class="btn ghost" type="button" id="authMode">إنشاء حساب جديد</button></form><p id="authError" class="error-text"></p></div></section>
+<section id="mainView" class="hidden"><header class="topbar"><div><div class="brand">ذِمّة</div><div class="brand-sub">Zimmah</div></div><div class="top-actions"><span id="syncBadge" class="status online">متصل</span><button id="lockBtn" class="icon-btn" aria-label="قفل التطبيق">🔒</button></div></header><main id="content" class="content"></main><nav class="bottom-nav"><button data-route="dashboard">الرئيسية</button><button data-route="people">الأشخاص</button><button data-route="transactions">المعاملات</button><button data-route="reports">التقارير</button><button data-route="settings">الإعدادات</button></nav><button id="fab" class="fab" aria-label="إضافة معاملة">+</button></section>
+</div><div id="modalRoot"></div><div id="toast" class="toast" role="status"></div>
+<script type="module" src="js/app.js"></script><script>if('serviceWorker' in navigator)navigator.serviceWorker.register('./service-worker.js').catch(()=>{});</script>
+</body></html>
