@@ -1,4 +1,4 @@
-const DB='zimmah-db',VERSION=2,STORES=['people','transactions','walletTransactions','syncQueue','settings','metadata'];let dbp;
+const DB='zimmah-db',VERSION=3,STORES=['people','transactions','walletAccounts','walletTransactions','syncQueue','settings','metadata'];let dbp;
 function open(){if(dbp)return dbp;dbp=new Promise((resolve,reject)=>{const r=indexedDB.open(DB,VERSION);r.onupgradeneeded=()=>{const db=r.result;for(const s of STORES)if(!db.objectStoreNames.contains(s))db.createObjectStore(s,{keyPath:'id'});};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});return dbp}
 export async function put(store,value){const db=await open();return new Promise((res,rej)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).put(value);tx.oncomplete=()=>res(value);tx.onerror=()=>rej(tx.error)})}
 export async function del(store,id){const db=await open();return new Promise((res,rej)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).delete(id);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)})}
